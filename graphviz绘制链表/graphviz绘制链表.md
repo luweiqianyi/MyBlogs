@@ -131,7 +131,7 @@
 
 * 起初`mMessage`的节点情况如下：
 
-  ![](C:\Users\Nicklaus\Desktop\graphviz绘制链表\imgs\p == null 1.PNG)
+  ![](.\imgs\p == null 1.PNG)
 
 * 执行函数`enqueueMessage`中line24之后，情况如下：
 

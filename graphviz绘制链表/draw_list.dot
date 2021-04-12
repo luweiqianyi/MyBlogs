@@ -1,0 +1,299 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // p == null 1.PNG
+// digraph{
+//     label = "\n mMessages为空情况(p = mMessages)"
+//     rankdir = LR
+//     node [shape = record]
+
+//     nullNode [shape = plaintext, label = "null"]
+//     mMessages->nullNode
+//     p->nullNode
+// }
+
+// // 设置msg的next为p.PNG
+// digraph{
+//     label = "\n mMessages为空情况(msg.next = p)"
+//     rankdir = LR
+//     node [shape = record]
+
+//     nullNode [shape = plaintext, label = "null"]
+//     mMessages->nullNode
+//     p->nullNode
+    
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     msg:s2->p
+// }
+
+
+
+// // 设置mMessage指向新加入的节点msg.PNG
+// digraph{
+//     label = "\n mMessages为空情况(mMessages = msg)"
+//     rankdir = LR
+//     node [shape = record]
+
+//     nullNode [shape = plaintext, label = "null"]
+//     p->nullNode
+    
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     msg:s2->p
+
+//     mMessages->msg:s0
+// }
+
+// // 初始情况-多个节点.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点(p = mMessages)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+//     mMessages->Node1:s0
+
+//     p->Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+//     Node1:s2->Node2:s0
+//     Node2:s2->otherNodes
+//     otherNodes->Node3:s0
+//     Node3:s2->nullNode
+// }
+
+// // 多节点情况下设置mMessage指向新加入的节点.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点(mMessages = msg)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     p->Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+//     Node1:s2->Node2:s0
+//     Node2:s2->otherNodes
+//     otherNodes->Node3:s0
+//     Node3:s2->nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     msg:s2->Node1:s0 // 执行msg->next = p
+
+//     mMessages->msg:s0
+// }
+
+// // 初始情况-单个节点.PNG
+// digraph{
+//     label = "\n 初始情况，单个节点(p = mMessages)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+//     Node1:s2->nullNode
+//     mMessages->Node1:s0   
+
+//     p->Node1:s0
+// }
+
+// // 单节点情况下设置mMessage指向新加入的节点.PNG
+// digraph{
+//     label = "\n 初始情况，单个节点(mMessages = msg)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     p->Node1:s0
+
+//     Node1:s2->nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     msg:s2->Node1:s0 // 执行msg->next = p
+
+//     mMessages->msg:s0
+// }
+
+// // 单节点情况下设置新节点的next为p.PNG
+// digraph{
+//     label = "\n 初始情况，单个节点(msg.next = p)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+//     mMessages->Node1:s0
+
+//     p->Node1:s0
+
+//     Node1:s2->nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     msg:s2->Node1:s0 // 执行msg->next = p
+
+// }
+
+// // 多节点 prev=p.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点第一次循环(prev = p)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     mMessages -> Node1:s0
+//     p->Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+
+//     Node1:s2 -> Node2:s0
+//     Node2:s2 -> otherNodes
+//     otherNodes -> Node3:s0
+//     Node3:s2 -> nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     prev -> Node1:s0 // prev = p;
+
+// }
+
+// 多节点msg的next指向p.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点第一次循环(msg.next = p)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     mMessages -> Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+
+//     Node1:s2 -> Node2:s0
+//     Node2:s2 -> otherNodes
+//     otherNodes -> Node3:s0
+//     Node3:s2 -> nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     prev -> Node1:s0 // prev = p;
+
+//     p->Node2:s0
+
+//     msg:s2->Node2:s0 // msg.next = p
+// }
+
+// // 多节点p=p的next.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点第一次循环(p = p.next)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     mMessages -> Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+
+//     Node1:s2 -> Node2:s0
+//     Node2:s2 -> otherNodes
+//     otherNodes -> Node3:s0
+//     Node3:s2 -> nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     prev -> Node1:s0 // prev = p;
+
+//     p->Node2:s0
+
+// }
+
+// // 多节点情况下设置prev的next指向新插入的节点msg.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点第一次循环(prev.next = msg)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     mMessages -> Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+
+//     Node2:s2 -> otherNodes
+//     otherNodes -> Node3:s0
+//     Node3:s2 -> nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     prev -> Node1:s0 // prev = p;
+
+//     p->Node2:s0
+
+//     msg:s2->Node2:s0 // msg.next = p
+//     Node1:s2->msg:s0 
+
+// }
+
+// // 多节点情况下设置新节点的next为p.PNG
+// digraph{
+//     label = "\n 初始情况，多个节点第一次循环(msg.next = p)"
+//     rankdir = LR
+//     node [shape = record]
+    
+//     nullNode [shape = plaintext, label = "null"]
+//     Node1 [label = "<s0> when | <s2> next"]
+
+//     mMessages -> Node1:s0
+
+//     Node2 [label = "<s0> when | <s2> next"]
+//     Node3 [label = "<s0> when | <s2> next"]
+//     otherNodes [label = "..."] //此处省略其他节点
+
+//     Node1:s2 -> Node2:s0
+//     Node2:s2 -> otherNodes
+//     otherNodes -> Node3:s0
+//     Node3:s2 -> nullNode
+
+//     // 新插入的节点msg
+//     msg [style=filled,fillcolor=pink,label = "<s0> when | <s2> next"]
+//     prev -> Node1:s0 // prev = p;
+
+//     p->Node2:s0
+
+//     msg:s2->Node2:s0 // msg.next = p
+// }
